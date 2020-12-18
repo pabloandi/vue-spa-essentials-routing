@@ -14,12 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-use App\Models\Status;
+use App\Http\Controllers\StatusController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/statuses', function () {
-    return Status::with('user:id,name')->latest()->get();
-});
+
+Route::get('/statuses', [StatusController::class,'index']);
+Route::post('/statuses', [StatusController::class,'store']);
